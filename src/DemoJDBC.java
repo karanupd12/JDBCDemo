@@ -5,7 +5,7 @@ Steps :-
 3. Create connection
 4. Create statement
 5. Execute Statement
-6. Process the result
+6. Process the result (involves CRUD operations)
 7. Close the connection/resources
  */
 
@@ -28,11 +28,15 @@ public class DemoJDBC {
         //step 4
         Statement st = con.createStatement();
 
-        //step 5
-        String sqlQuery = "select * from student";
-        ResultSet rs = st.executeQuery(sqlQuery);
-
-        //step 6
+        //step 5 and 6 (execturing and processing CRUD from IDE)
+        String sqlQuery1 = "insert into student values (4,'John', 70)";   //query for creation
+        String sqlQuery2 = "update student set sname = 'Max' where sid = 4";  //query for updation
+        String sqlQuery3 = "delete from student where sid = 4"; //query for deletion
+        String sqlQuery4 = "select * from student";
+        //st.execute(sqlQuery1);    done
+        //st.execute(sqlQuery2);    done
+        //st.execute(sqlQuery3);    your choice
+        ResultSet rs = st.executeQuery(sqlQuery4);    //read operation
         while(rs.next()){
             System.out.println(
                     rs.getInt(1) + " " +
@@ -44,6 +48,5 @@ public class DemoJDBC {
         //step 7
         con.close();
         System.out.println("Connection Closed");
-
     }
 }
